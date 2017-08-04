@@ -15,7 +15,13 @@ const ProductList = React.createClass({
         this.setState({products: products});
     },
     handleProductUpVote: function (productId) {
-        console.log(productId + " was upvoted.")
+        Data.forEach((el) => {
+            if (el.id === productId) {
+                el.votes = el.votes + 1;
+                return;
+            }
+        });
+        this.updateState();
     },
     render: function () {
         const products = this.state.products.map((product) => {
